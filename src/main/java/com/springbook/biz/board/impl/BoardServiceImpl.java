@@ -12,13 +12,11 @@ import com.springbook.biz.board.BoardService;
 public class BoardServiceImpl implements BoardService {
 	
 	@Autowired
-	private BoardDAOSpring boardDAO;
+	private BoardDAOMybatis boardDAO;
 	
 	
 	
 	public void insertBoard(BoardVO vo) {
-		
-		
 		boardDAO.insertBoard(vo);
 	}
 	

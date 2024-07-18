@@ -28,8 +28,26 @@
     </bean>
 
     <context:component-scan base-package="com.springbook.biz" />
-
     <aop:aspectj-autoproxy />
+    
+    <!-- mybatis연동 -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"/>
+      <property name="configLocation" value="classpath:sql-map-config.xml"></property>
+    
+    </bean>
+     
+     <!--  Spring과 mybatis 연동설정  -->
+     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+     <property name="configLocation" value="classpath:sql-map-config.xml"></property>
+     <property name="dataSource" ref="dataSource"></property>
+     </bean>
+      
+       
+      <bean class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg ref="sqlSession"></constructor-arg>
+      </bean>
+     
 </beans>
 
 <!-- <bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl"> 
